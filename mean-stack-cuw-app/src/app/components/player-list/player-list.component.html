@@ -1,0 +1,42 @@
+<div class="container">
+    <!-- No data message -->
+    <p *ngIf="Player.length <= 0" class="no-data text-center">No player(s) added yet!</p>
+    <!-- Player list -->
+    <table class="table table-bordered" *ngIf="Player.length > 0">
+      <thead class="table-success">
+        <tr>
+          <th scope="col">Player ID</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name Name</th>
+          <th scope="col">Grade</th>
+          <th scope="col">Position</th>
+          <th scope="col">Jersey Number</th>
+          <th scope="col">Goals Scored</th>
+          <th scope="col">Assists</th>
+          <th scope="col">Goals Saved</th>
+          <th scope="col center">Update</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let player of Player; let i = index">
+          <th scope="row">{{player._id}}</th>
+          <td>{{player.First_Name}}</td>
+          <td>{{player.Last_Name}}</td>
+          <td>{{player.Grade}}</td>
+          <td>{{player.position}}</td>
+          <td>{{player.jerseyNumber}}</td>
+          <td>{{player.goalsScored}}</td>
+          <td>{{player.assists}}</td>
+          <td>{{player.goalsSaved}}</td>
+          <td class="text-center edit-block">
+            <span class="edit" [routerLink]="['/edit-player/', player._id]">
+              <button type="button" class="btn btn-success btn-sm">Edit</button>
+            </span>
+            <span class="delete" (click)="removePlayer(player, i)">
+              <button type="button" class="btn btn-danger btn-sm">Delete</button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
